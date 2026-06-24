@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cardio Immunology Review</title>
+<style>
+:root{--blue:#1b3f66;--blue2:#2E6CA4;--crim:#8a2b3a;--ink:#1f2933;--grey:#6a7886;--line:#e3e8ee;--bg:#f5f8fb;--paper:#fff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);overflow:hidden;}
+.serif{font-family:Georgia,'Times New Roman',serif;}
+.screen{position:fixed;inset:0;opacity:0;visibility:hidden;transform:translateY(14px) scale(.996);transition:opacity .55s ease,transform .55s ease,visibility .55s;overflow:auto;}
+.screen.active{opacity:1;visibility:visible;transform:none;}
+
+/* LEVEL 1 : SPLASH (titre linéaire cliquable) */
+#splash{display:flex;align-items:center;justify-content:center;text-align:center;cursor:pointer;background:
+  radial-gradient(1000px 600px at 50% -6%,rgba(196,142,104,.20),transparent 60%),
+  linear-gradient(160deg,#5e1a26 0%,#4a141d 52%,#350c14 100%);}
+#splash .box{animation:fadeUp 1s ease both;padding:30px;}
+#splash .kicker{letter-spacing:6px;text-transform:uppercase;font-size:12px;color:#d8b29e;margin-bottom:22px;}
+#splash .enter{display:inline-block;color:#f6ede2;font-size:46px;font-weight:600;line-height:1.15;letter-spacing:.3px;border-bottom:2px solid transparent;transition:border-color .25s,color .25s;}
+#splash:hover .enter{border-bottom-color:#d9b06a;}
+#splash .enter .am{color:#d9b06a;}
+#splash .tag{margin-top:16px;color:#e6cfc4;font-style:italic;}
+#splash .hint{margin-top:30px;color:#7fa3c4;font-size:13px;letter-spacing:1px;animation:pulse 2.4s infinite;}
+@keyframes pulse{0%,100%{opacity:.5;}50%{opacity:1;}}
+
+/* top bar */
+.bar{position:sticky;top:0;background:var(--paper);border-bottom:2px solid var(--blue);padding:14px 28px;display:flex;align-items:center;gap:16px;z-index:5;}
+.bar .brand{font-family:Georgia,serif;color:var(--blue);font-weight:bold;font-size:18px;cursor:pointer;}
+.bar a.back{color:var(--blue2);cursor:pointer;font-size:14px;text-decoration:none;}
+.bar .ver{margin-left:auto;font-size:12px;color:var(--grey);border:1px solid var(--line);border-radius:20px;padding:3px 12px;}
+.wrap{max-width:1080px;margin:0 auto;padding:34px 28px 60px;}
+.eyebrow{letter-spacing:3px;text-transform:uppercase;font-size:12px;color:var(--crim);font-weight:700;}
+h2.title{font-family:Georgia,serif;color:var(--blue);font-size:28px;margin:6px 0 4px;}
+.lead{color:#48586a;font-size:15.5px;max-width:760px;}
+
+/* LEVEL 2 : APPS — 3 piliers (académiques) + 5 parties (plus petites) + citations */
+.pillrow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:28px 0 28px;}
+.pill{position:relative;background:linear-gradient(160deg,#243c59,#162740);border-radius:14px;padding:42px 24px 34px;text-align:center;cursor:pointer;color:#f3ead6;box-shadow:0 10px 26px rgba(0,0,0,.18);transition:transform .22s,box-shadow .22s;}
+.pill::before{content:'';position:absolute;inset:11px;border:1px solid rgba(201,162,75,.5);border-radius:9px;pointer-events:none;transition:border-color .22s;}
+.pill:hover{transform:translateY(-6px);box-shadow:0 22px 48px rgba(0,0,0,.30);}
+.pill:hover::before{border-color:rgba(201,162,75,.95);}
+.pill .orn{color:#c9a24b;font-size:18px;letter-spacing:2px;}
+.pill .nm{font-family:Georgia,serif;font-size:22px;color:#f7f1e4;margin-top:12px;line-height:1.25;}
+.pill .rule{width:42px;height:2px;background:#c9a24b;margin:14px auto 0;opacity:.85;}
+.partrow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:740px;margin:36px auto 0;}
+.ptile{border-radius:10px;padding:15px 8px;text-align:center;cursor:pointer;color:#eef1f5;box-shadow:0 4px 12px rgba(0,0,0,.12);transition:transform .18s,filter .18s;}
+.ptile:hover{transform:translateY(-4px);filter:brightness(1.1);}
+.ptile .rom{font-family:Georgia,serif;font-size:24px;font-weight:bold;line-height:1;}
+.ptile .lab{font-size:11px;margin-top:6px;letter-spacing:.3px;opacity:.92;}
+.sectionhead{margin:6px 0 12px;font-family:Georgia,serif;color:var(--blue);font-size:16px;}
+.quotes{position:relative;margin:56px 0 6px;min-height:240px;}
+.q{position:absolute;font-family:Georgia,serif;font-style:italic;color:#7a8593;font-size:15.5px;line-height:1.55;max-width:360px;}
+.q .a{display:block;font-style:normal;font-size:12.5px;color:#a7b0bc;margin-top:7px;letter-spacing:.3px;}
+
+/* parts cards (section screen) */
+.parts{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:16px;}
+.partc{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:18px 14px;text-align:center;cursor:pointer;transition:transform .18s,box-shadow .18s;}
+.partc:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(20,54,92,.10);}
+.partc .rom{font-family:Georgia,serif;font-size:28px;color:var(--blue2);font-weight:bold;}
+.partc .pt{font-size:12.5px;color:#48586a;margin-top:8px;line-height:1.35;}
+.partc .cnt{font-size:11px;color:var(--grey);margin-top:8px;}
+
+/* chapters */
+.chaps{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px;}
+.chcard{display:flex;gap:14px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--blue2);border-radius:10px;padding:14px 16px;cursor:pointer;transition:transform .15s,box-shadow .15s;}
+.chcard:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(20,54,92,.10);}
+.chcard .nn{font-family:Georgia,serif;font-weight:bold;color:var(--blue2);font-size:20px;min-width:26px;}
+.chcard .ct{font-size:15px;}
+
+/* content */
+.crumb{color:var(--grey);font-size:13px;margin-bottom:4px;}
+.subs{list-style:none;margin:16px 0 26px;}
+.subs li{padding:9px 13px;border:1px solid var(--line);border-left:3px solid var(--blue2);border-radius:5px;margin:6px 0;font-size:15px;background:var(--paper);}
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);flex-wrap:wrap;}
+.tab{padding:9px 16px;cursor:pointer;font-size:14px;color:var(--grey);border:1px solid transparent;border-bottom:none;border-radius:8px 8px 0 0;}
+.tab.active{color:var(--blue);background:var(--paper);border-color:var(--line);font-weight:600;}
+.pane{background:var(--paper);border:1px solid var(--line);border-radius:0 8px 8px 8px;padding:22px;min-height:130px;font-size:15px;color:#48586a;}
+.pane .ph{font-style:italic;color:var(--grey);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+.fade{animation:fadeUp .45s ease both;}
+@media(max-width:860px){.pillrow{grid-template-columns:1fr;}.partrow{grid-template-columns:repeat(3,1fr);max-width:none;}.quotes{min-height:auto;}.q{position:static!important;transform:none!important;max-width:none!important;text-align:left!important;margin:16px 0;}.parts{grid-template-columns:repeat(2,1fr);}.chaps{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- LEVEL 1 : SPLASH -->
+<section class="screen active" id="splash" onclick="go('apps')">
+  <div class="box">
+    <div class="kicker">Revue scientifique en ligne</div>
+    <div class="enter serif">Cardio <span class="am">Immunology</span> Review</div>
+  </div>
+</section>
+
+<!-- LEVEL 2 : APPS (8 rubriques) -->
+<section class="screen" id="apps">
+  <div class="bar"><span class="brand" onclick="go('splash')">Cardio Immunology Review</span><span class="ver" id="ver2"></span></div>
+  <div class="wrap fade">
+    <div class="eyebrow">Tableau de bord</div>
+    <h2 class="title">Choisissez une rubrique</h2>
+    <div class="pillrow" id="pillRow"></div>
+    <div class="partrow" id="partRow"></div>
+    <div class="quotes">
+      <div class="q" style="left:1%;top:4px;max-width:345px;transform:rotate(-1deg)">« Le cœur est le commencement de la vie, le soleil du microcosme. »<span class="a">— William Harvey, De Motu Cordis, 1628</span></div>
+      <div class="q" style="right:4%;top:80px;max-width:325px;text-align:right;transform:rotate(.7deg)">« Le cœur n’est pas qu’une pompe : c’est un organe immunosensible. »</div>
+      <div class="q" style="left:27%;top:160px;max-width:380px;transform:rotate(-.5deg)">« Toute réponse à l’agression du cœur est, d’abord, une réponse immunitaire. »</div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLAR SECTION -->
+<section class="screen" id="section">
+  <div class="bar"><span class="brand" onclick="go('apps')">Cardio Immunology Review</span><a class="back" onclick="go('apps')">‹ Rubriques</a><span class="ver" id="ver3"></span></div>
+  <div class="wrap fade"><div class="eyebrow" id="secEye"></div><h2 class="title" id="secTitle"></h2><p class="lead" id="secLead"></p>
+    <div class="sectionhead">Parcourir par partie</div><div class="parts" id="secParts"></div></div>
+</section>
+
+<!-- CHAPTERS -->
+<section class="screen" id="chapters">
+  <div class="bar"><span class="brand" onclick="go('apps')">Cardio Immunology Review</span><a class="back" id="backFromCh">‹ Retour</a><span class="ver" id="ver4"></span></div>
+  <div class="wrap fade"><div class="crumb" id="chCrumb"></div><h2 class="title" id="chTitle"></h2><div class="chaps" id="chapsGrid"></div></div>
+</section>
+
+<!-- CONTENT -->
+<section class="screen" id="content">
+  <div class="bar"><span class="brand" onclick="go('apps')">Cardio Immunology Review</span><a class="back" id="backFromCo">‹ Retour</a><span class="ver" id="ver5"></span></div>
+  <div class="wrap fade"><div class="crumb" id="coCrumb"></div><h2 class="title" id="coTitle"></h2>
+    <ul class="subs" id="coSubs"></ul>
+    <div class="tabs">
+      <div class="tab" data-k="texte" onclick="setTab('texte')">Texte du chapitre</div>
+      <div class="tab" data-k="revue" onclick="setTab('revue')">Revue vivante</div>
+      <div class="tab" data-k="biblio" onclick="setTab('biblio')">Bibliographie commentée</div>
+    </div>
+    <div class="pane" id="coPane"></div>
+  </div>
+</section>
+
+<script>
+const VERSION="2026.1 (prototype)";
+const PILLARS={
+ manifeste:{eye:"Texte fondateur",title:"Le Manifeste de Cardio-immunologie",lead:"L’ontologie stable du champ : 5 parties, 21 chapitres. Parcourez le texte fondateur, partie par partie.",tab:"texte"},
+ review:{eye:"Revue vivante",title:"La Review",lead:"L’état de l’art, mis à jour trimestriellement. Parcourez la revue, partie par partie.",tab:"revue"},
+ biblio:{eye:"Première mondiale",title:"La Bibliographie commentée",lead:"Pour chaque source, deux lectures critiques — de l’article (la preuve) et immunologique (le sens). Parcourez-la par partie.",tab:"biblio"}
+};
+const ARCH={parts:[
+ {part:"I",title:"Principes et mécanismes",chapters:[
+  {n:1,t:"Bases immunologiques fondamentales",s:["L’inflammation comme programme physiologique","Immunité innée : danger et inflammasome","Immunité adaptative : spécificité, mémoire, tolérance","Cytokines, complément et résolution","Immunosénescence et « inflammaging » cardiovasculaire"]},
+  {n:2,t:"Cellules effectrices de l’immunité cardiaque",s:["Le myocarde comme niche immunitaire","Macrophages cardiaques résidents (CCR2– / CCR2+)","Lymphocytes T cardiaques","Cellules NK, dendritiques et mastocytes","Lymphatiques cardiaques et drainage immunitaire"]},
+  {n:3,t:"Biologie vasculaire et athérogenèse inflammatoire",s:["Athérosclérose, maladie immuno-inflammatoire","Dysfonction endothéliale, NLRP3 et axe IL-1β/IL-6","Immunité adaptative, NET, efferocytose","Hématopoïèse clonale ; plaque vulnérable et cibles"]},
+  {n:4,t:"Remodelage cardiaque post-infarctus",s:["Alarme ischémique, inflammation, résolution","Fibrose, couplage systémique cœur–moelle–rate","Immunobiologie et timing thérapeutique"]},
+ ]},
+ {part:"II",title:"Maladies auto-immunes, auto-inflammatoires et infiltratives",chapters:[
+  {n:5,t:"Péricardites immuno-médiées",s:["Péricardite récurrente (maladie de l’IL-1)","Syndrome de Dressler / post-cardiotomie","Péricardites des maladies systémiques"]},
+  {n:6,t:"Myocardites",s:["Nosologie, immunopathologie (modèle triphasique)","Myocardite à éosinophiles / Löffler","Myocardite à cellules géantes","Myocardite démasquant une cardiomyopathie génétique","Diagnostic (IRM, biopsie) et traitement"]},
+  {n:7,t:"Cardiopathies inflammatoires et infiltratives : sarcoïdose et amyloses",s:["Sarcoïdose cardiaque","Amyloses (AL, ATTR, AA)","Diagnostics différentiels (dont Fabry)"]},
+  {n:8,t:"Maladies auto-immunes systémiques",s:["Lupus érythémateux systémique","Syndrome des antiphospholipides","Polyarthrite rhumatoïde","Sclérodermie systémique","Syndrome de Sjögren","Spondyloarthrites"]},
+  {n:9,t:"Vascularites systémiques",s:["Artérite à cellules géantes et Takayasu","Maladie de Kawasaki","Vascularites à ANCA","EGPA (Churg-Strauss)","Panartérite noueuse","Syndrome de Cogan","Vascularites cryoglobulinémiques"]},
+  {n:10,t:"Syndromes auto-inflammatoires",s:["Auto-inflammation et immunité innée","Maladie de Still et SAM","Fièvre méditerranéenne familiale","TRAPS, cryopyrinopathies (CAPS), MKD","Schnitzler, NLRC4"]},
+  {n:11,t:"Hypertension pulmonaire des maladies auto-immunes",s:["Connectivites, mécanismes, dépistage (DETECT)","HTP thromboembolique chronique du SAPL"]},
+  {n:12,t:"Maladies systémiques rares à expression cardiovasculaire",s:["Maladie associée aux IgG4","Myopathies inflammatoires / antisynthétases","Maladie de Behçet","VEXAS ; DADA2","Interféronopathies ; Erdheim-Chester"]},
+ ]},
+ {part:"III",title:"Insuffisance cardiaque et thérapeutique immunomodulatrice",chapters:[
+  {n:13,t:"Pharmacologie immunomodulatrice en cardiologie",s:["Immunomodulation ciblée ; anti-IL-1","Anti-IL-6, colchicine, complément ; échec anti-TNF","Iatrogénie des corticoïdes/immunosuppresseurs"]},
+  {n:14,t:"Acteurs cellulaires de l’insuffisance cardiaque",s:["Macrophages","Lymphocytes T","Cellules Natural Killer","Auto-anticorps anti-β1 et cardiomyopathie dilatée"]},
+  {n:15,t:"Biothérapies de l’insuffisance cardiaque",s:["Hypothèse cytokinique","IL-1β ; IL-6 et axe IL-33/sST2","Anti-TNF, SGLT2 ; algorithme"]},
+ ]},
+ {part:"IV",title:"Cardio-immunologie des contextes particuliers",chapters:[
+  {n:16,t:"Axe microbiote intestinal–immunité–cœur",s:["TMAO et au-delà ; dysbiose et insuffisance cardiaque"]},
+  {n:17,t:"Cardio-oncologie immunologique",s:["Inhibiteurs de checkpoint (myocardite)","Thérapies CAR-T","Thérapies ciblées ; radiothérapie"]},
+  {n:18,t:"Cardio-infectiologie immunologique",s:["Paradigme immuno-infectieux","Cardites post-streptococciques et RAA","Myocardites virales à médiation immune","Chagas ; cardite de Lyme","VIH ; cardiomyopathie septique","COVID-19"]},
+ ]},
+ {part:"V",title:"Médecine de précision",chapters:[
+  {n:19,t:"Génomique et endotypage en cardio-immunologie",s:["HLA et hématopoïèse clonale","Transcriptomique et endotypage","Scores polygéniques, pharmacogénomique, IA","Cardiomyopathies génétiques héréditaires (CARDIOGEN)"]},
+  {n:20,t:"Imagerie et biomarqueurs en cardio-immunologie",s:["Imagerie de l’inflammation et de la fibrose","TEP-FDG et imagerie moléculaire","Biomarqueurs solubles"]},
+  {n:21,t:"Transplantation cardiaque et immunologie du rejet",s:["Reconnaissance allogénique ; ADN libre du donneur","Rejet humoral (AMR) et anticorps anti-donneur","Immunosuppression et vasculopathie du greffon","Xénotransplantation cardiaque"]},
+ ]},
+]};
+let state={mode:'texte',from:'apps'};
+const chapters={};ARCH.parts.forEach(p=>p.chapters.forEach(c=>chapters[c.n]=Object.assign({},c,{P:p})));
+['ver2','ver3','ver4','ver5'].forEach(id=>document.getElementById(id).textContent=VERSION);
+
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+function partCard(p,cls,onclick){const d=document.createElement('div');d.className=cls;d.onclick=onclick;
+  d.innerHTML='<div class="rom">'+p.part+'</div><div class="pt">'+p.title+'</div><div class="cnt">'+p.chapters.length+' chapitres</div>';return d;}
+function buildApps(){
+  const pr=document.getElementById('pillRow');pr.innerHTML='';
+  const pil=[{k:'manifeste',lab:'Le Manifeste'},{k:'review',lab:'La Review'},{k:'biblio',lab:'La Bibliographie commentée'}];
+  pil.forEach(p=>{const d=document.createElement('div');d.className='pill';d.onclick=()=>openPillar(p.k);
+   d.innerHTML='<div class="orn">&#10086;</div><div class="nm">'+p.lab+'</div><div class="rule"></div>';pr.appendChild(d);});
+  const g=document.getElementById('partRow');g.innerHTML='';
+  const cols=['linear-gradient(150deg,#21505a,#143338)','linear-gradient(150deg,#34543e,#1f3326)','linear-gradient(150deg,#5f4a30,#3e301c)','linear-gradient(150deg,#473a5a,#2c2338)','linear-gradient(150deg,#2c4a5e,#1a303e)'];
+  ARCH.parts.forEach((p,i)=>{const d=document.createElement('div');d.className='ptile';d.style.background=cols[i];d.title=p.title;d.onclick=()=>{state.mode='texte';openPart(p.part,'apps');};
+   d.innerHTML='<div class="rom">'+p.part+'</div><div class="lab">Partie '+p.part+'</div>';g.appendChild(d);});}
+function openPillar(k){const P=PILLARS[k];state.mode=P.tab;
+  document.getElementById('secEye').textContent=P.eye;document.getElementById('secTitle').textContent=P.title;document.getElementById('secLead').textContent=P.lead;
+  const g=document.getElementById('secParts');g.innerHTML='';ARCH.parts.forEach(p=>g.appendChild(partCard(p,'partc',()=>openPart(p.part,'section'))));
+  go('section');}
+function openPart(rom,from){state.from=from;const p=ARCH.parts.find(x=>x.part===rom);
+  document.getElementById('chCrumb').textContent='Partie '+p.part;document.getElementById('chTitle').textContent=p.title;
+  document.getElementById('backFromCh').onclick=()=>go(from);
+  const g=document.getElementById('chapsGrid');g.innerHTML='';
+  p.chapters.forEach(c=>{const d=document.createElement('div');d.className='chcard';d.onclick=()=>openChap(c.n,rom);
+    d.innerHTML='<div class="nn">'+c.n+'</div><div class="ct">'+c.t+'</div>';g.appendChild(d);});
+  go('chapters');}
+function openChap(n,rom){const c=chapters[n];
+  document.getElementById('coCrumb').textContent='Partie '+c.P.part+' — '+c.P.title;
+  document.getElementById('coTitle').textContent=n+'. '+c.t;
+  document.getElementById('coSubs').innerHTML=c.s.map(x=>'<li>'+x+'</li>').join('');
+  document.getElementById('backFromCo').onclick=()=>openPart(rom,state.from);
+  setTab(state.mode||'texte');go('content');}
+function setTab(k){document.querySelectorAll('#content .tab').forEach(t=>t.classList.toggle('active',t.dataset.k===k));
+  const txt={texte:'<span class="ph">Le texte de ce chapitre, issu du Manifeste de Cardio-immunologie, s’affichera ici. (En construction.)</span>',
+   revue:'<span class="ph">État de l’art mis à jour (version trimestrielle) pour cette rubrique. (À alimenter.)</span>',
+   biblio:'<span class="ph">Bibliographie commentée : pour chaque source clé, une lecture critique d’article et une lecture immunologique. (Alimentée au fil de l’eau.)</span>'};
+  document.getElementById('coPane').innerHTML=txt[k];}
+buildApps();
+</script>
+</body>
+</html>
