@@ -1,2 +1,2 @@
 # Cardio-Immunology-Review
-Textbook, Review and the world's first annotated bibliography.
+A treatise, an online review and an annotated bibliography in cardio-immunology.
