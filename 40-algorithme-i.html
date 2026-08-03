@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALGORITHME I — Le Manifeste de Cardio-immunologie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lecture.css">
+</head>
+<body>
+<div class="bar"><a class="bwm" href="../index.html"><span class="mm">C</span><b>Cardio Immunology Review</b></a><span class="bmode">Le Traité · lecture</span><a class="bclose" href="index.html">Sommaire du Traité</a></div><div class="hero"><div class="k">PARTIE IV · Contextes particuliers</div><h1>ALGORITHME I</h1><div class="rule"></div></div><div class="wrap"><h2>Ce que le résultat fait à la probabilité</h2>
+<h3>La règle, en une ligne</h3>
+<p>Cote après le test = cote avant le test × rapport de vraisemblance.</p>
+<p>La cote se convertit en probabilité par p = cote / (1 + cote). C'est toute la mécanique.</p>
+<h3>Les deux rapports de vraisemblance</h3>
+<p>Pour un test positif : RV+ = sensibilité / (1 − spécificité)</p>
+<p>Pour un test négatif : RV− = (1 − sensibilité) / spécificité</p>
+<p>Un RV+ supérieur à 10 fait basculer un diagnostic. Entre 2 et 5, il oriente sans trancher. Inférieur à 2, il ne change presque rien.</p>
+<p>Un RV− inférieur à 0,1 permet d'éliminer. Supérieur à 0,5, un test négatif ne rassure pas.</p>
+<h3>Application au chapitre 7 : l'épargne apicale relative dans l'amylose</h3>
+<p>Le Traité rapporte, à la sous-section correspondante, deux jeux de performances issus de deux agrégations distinctes. Le calcul est fait sur chacune, et l'écart entre les deux est instructif.</p>
+<p>Première agrégation (seuil 0,83) : sensibilité 73 %, spécificité 77 %.</p>
+<h3>RV+ = 0,73 / (1 − 0,77) = 0,73 / 0,23 = 3,2</h3>
+<h3>RV− = (1 − 0,73) / 0,77 = 0,27 / 0,77 = 0,35</h3>
+<p>Seconde agrégation : sensibilité 65,9 %, spécificité 83,1 %.</p>
+<h3>RV+ = 0,659 / 0,169 = 3,9</h3>
+<h3>RV− = 0,341 / 0,831 = 0,41</h3>
+<p>Lecture. Les deux calculs concordent sur l'essentiel : le RV+ se situe entre 3 et 4, le RV− autour de 0,4.</p>
+<p>Un RV+ de 3 à 4 oriente et ne tranche pas. Un RV− de 0,4 signifie qu'un test négatif divise la cote par deux et demi seulement : il ne permet pas d'éliminer l'amylose.</p>
+<p>C'est la démonstration mathématique de ce que le chapitre affirmait en prose : l'épargne apicale est un bon motif de suspicion et un mauvais arbitre.</p>
+<h3>La conséquence pratique, et elle est contre-intuitive</h3>
+<p>Appliquons ce RV+ de 3,2 à deux situations que le Traité distingue.</p>
+<p>Situation A. Sujet de 84 ans, sténose aortique serrée à bas gradient, adressé pour remplacement valvulaire. Le chapitre rapporte une prévalence d'amylose de 16 % dans cette population.</p>
+<p>Cote avant = 0,16 / 0,84 = 0,19. Cote après = 0,19 × 3,2 = 0,61. Probabilité après = 38 %.</p>
+<p>Un test positif fait passer de 16 % à 38 %. Le malade reste plus souvent indemne qu'atteint. Le test ne dispense pas de la scintigraphie.</p>
+<p>Situation B. Hypertrophie inexpliquée sans drapeau rouge, probabilité initiale estimée à 3 %.</p>
+<p>Cote avant = 0,031. Cote après = 0,031 × 3,2 = 0,099. Probabilité après = 9 %.</p>
+<p>Le même test positif laisse plus de neuf malades sur dix indemnes. Il produit ici plus de faux positifs que de vrais.</p>
+<p>Le même résultat, chez deux malades différents, n'a pas la même signification. Ce n'est pas une nuance de jugement : c'est une conséquence arithmétique.</p>
+<h3>Ce que cet algorithme fonde</h3>
+<p>Le code de lecture des Colonnes du diagnostic de ce Traité, confirme, oriente, n'élimine pas, cesse d'être une intuition graphique. Il devient la traduction visuelle d'une grandeur mesurable :</p>
+<p>CONFIRME correspond à un RV+ élevé, supérieur à 10.</p>
+<p>ORIENTE correspond à un RV+ modéré, entre 2 et 5. C'est le cas de l'épargne apicale.</p>
+<p>N'ÉLIMINE PAS correspond à un RV− supérieur à 0,3. C'est le code le plus utile, et le plus oublié.</p></div><div class="nav"><a href="39-raisonner-sur-un-malade-non-sur-une-populati.html"><span class="lb">Précédent</span>RAISONNER SUR UN MALADE, NON SUR UNE POPULATION</a><a class="rt" href="41-algorithme-ii.html"><span class="lb">Suivant</span>ALGORITHME II</a></div>
+<div class="proto"><b>PROTOTYPE</b></div>
+</body>
+</html>
