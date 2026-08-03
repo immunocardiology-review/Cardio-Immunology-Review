@@ -83,9 +83,12 @@
   @keyframes pop{to{opacity:1}}
   @keyframes beat{0%,100%{opacity:.16;transform:scale(1)}50%{opacity:.28;transform:scale(1.06)}}
   @keyframes farin{to{opacity:1}}
-  @keyframes tw{0%,100%{transform:scale(1)}50%{transform:scale(1.7)}}
+  /* Le rubis ne scintille pas comme une étoile : il LUIT.
+     Une pierre de mouvement n'a pas de vie propre — c'est la lumière qui passe
+     dessus qui la réveille. On anime donc la LUMINOSITÉ, jamais la taille. */
+  @keyframes gemlum{0%,100%{filter:brightness(1) saturate(1)}45%{filter:brightness(1.42) saturate(1.18)}}
   #p2 .far{opacity:0;animation:farin 1.6s ease 1.9s forwards}
-  #p2 .far .st{transform-box:fill-box;transform-origin:center;animation:tw 4.6s ease-in-out infinite}
+  #p2 .far .gem{transform-box:fill-box;transform-origin:center;animation:gemlum 7.2s ease-in-out infinite}
 
   #p3{background:radial-gradient(900px 560px at 50% 8%,rgba(203,168,90,.12),transparent 60%),linear-gradient(180deg,#16304F,#0C1B2E);color:#EFE7D3;overflow:auto}
   .p3in{position:relative;z-index:1;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 30px}
@@ -93,6 +96,8 @@
   #p3 .ex{position:absolute;max-width:330px;font-family:var(--display);font-style:italic;font-size:12px;line-height:1.55;color:#CBA85A;opacity:.22}
   #p3 .ex .rf{display:block;font-style:normal;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B4903F;margin-top:5px}
   @media(max-width:900px){#p3 .ex{display:none}}
+  #p3 .slg{position:absolute;right:3.6%;bottom:6%;z-index:0;text-align:right;font-family:var(--display);font-style:italic;font-size:13px;line-height:1.9;color:#CBA85A;opacity:.20;pointer-events:none;max-width:340px;letter-spacing:.01em}
+  @media(max-width:900px){#p3 .slg{display:none}}
   .p3in .kick{font-size:11px;color:var(--or-pale)}
   .p3in h2{font-family:var(--display);font-weight:500;font-size:clamp(28px,4.4vw,40px);letter-spacing:.05em;color:#fff;margin:14px 0 6px}
   .p3rule{width:64px;height:1px;background:linear-gradient(90deg,transparent,var(--or-clair),transparent);margin:22px auto 58px}
@@ -214,6 +219,46 @@
     #expose.reveal .part-h,#expose.reveal .chap{opacity:1;transform:none}
     *{animation-duration:.001ms!important;animation-iteration-count:1!important}
   }
+
+  /* ——— couche additive du 3 août 2026 : fiche du Traité, fenêtre du PDF, « coming soon ».
+     Aucune règle ci-dessus n'a été touchée : palette, étoiles, rubis et lumière inchangés. ——— */
+  #traite{position:fixed;inset:0;z-index:130;display:none;flex-direction:column;background:var(--parch)}
+  #traite.open{display:flex}
+  .t-sub{text-align:center;font-style:italic;color:var(--muted);font-size:19px;margin:14px auto 0;max-width:34em}
+  .t-fiche{margin:34px 0 0;padding:24px 28px;border:1px solid var(--line);background:var(--parch2)}
+  .t-fiche dl{display:grid;grid-template-columns:auto 1fr;gap:7px 20px;font-size:16px;margin:0}
+  .t-fiche dt{color:var(--or);text-transform:uppercase;letter-spacing:.16em;font-size:11px;padding-top:5px}
+  .t-fiche dd{margin:0}
+  .t-win{margin:26px 0 0;padding:24px 28px;border:1px solid var(--or);background:#fff}
+  .t-win h4{font-family:var(--display);font-weight:600;font-size:22px;color:var(--navy);margin-bottom:6px}
+  .t-win p{font-size:15px;color:var(--muted)}
+  .t-act{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px}
+  .t-act a{display:inline-block;padding:12px 22px;border:1px solid var(--or);background:var(--navy);color:#F3EAD2;
+    font-size:13px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
+  .t-act a:hover{background:var(--or);color:#12233b}
+  .t-act a.sec{background:transparent;color:var(--navy)}
+  .t-pres{margin-top:40px}
+  .t-pres p{margin:0 0 1.05em;text-align:justify;font-size:17px}
+  .t-pres .sig{font-style:italic;color:var(--muted)}
+  .t-list{list-style:none;margin-top:10px}
+  .t-list li{display:flex;gap:14px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line);font-size:16px}
+  .t-list li .cn{font-family:var(--display);color:var(--or);min-width:34px;font-size:18px}
+  .t-list li a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent}
+  .t-list li a:hover{color:var(--or);border-color:var(--or)}
+  .t-proto{text-align:center;padding:30px 20px 10px;font-size:12px;letter-spacing:.28em;color:var(--muted)}
+  .t-proto b{color:var(--or);letter-spacing:.34em}
+  #soon{position:fixed;inset:0;z-index:180;display:none;align-items:center;justify-content:center;
+    background:rgba(6,15,27,.78);padding:24px}
+  #soon.open{display:flex}
+  #soon .card{max-width:460px;width:100%;text-align:center;padding:52px 34px;background:var(--parch);
+    border:1px solid var(--or);box-shadow:0 40px 90px -30px rgba(0,0,0,.8)}
+  #soon .card .k{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--or)}
+  #soon .card h3{font-family:var(--display);font-weight:600;font-size:32px;color:var(--navy);margin:12px 0 0}
+  #soon .card .r{width:52px;height:1px;background:var(--or-clair);margin:22px auto}
+  #soon .card .d{font-size:19px;color:var(--ink)}
+  #soon .card .x{margin-top:30px;display:inline-block;padding:10px 22px;border:1px solid var(--line);
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);cursor:pointer}
+  #soon .card .x:hover{background:var(--or);color:#12233b;border-color:var(--or)}
 </style>
 </head>
 <body>
@@ -249,6 +294,7 @@
     <div class="ex" style="top:6%;left:3.5%;max-width:360px">« The landscape drawn so far, from macrophages to T lymphocytes, from natural killer cells to dendritic cells and mast cells, remained that of hematopoietic cells. Yet the thesis of the heart as an immune organ is fulfilled only by recognizing that its non-hematopoietic resident cells, long reduced to contractile, barrier or structural roles, themselves take part in danger sensing and in the orchestration of inflammation. The cardiomyocyte, the endothelium and the fibroblast possess the receptor repertoire, the signalling pathways and the secretory capacities of true sentinels; their engagement sets the magnitude, the location and the resolution of the myocardial immune response. »<span class="rf">Manifesto, §2.7</span></div>
     <div class="ex" style="top:6%;right:3.5%;max-width:360px;text-align:right">« This is the mechanistic node that links seemingly heterogeneous cardiovascular insults: cholesterol and urate crystals, once phagocytosed, rupture the lysosomal membrane and activate the inflammasome, while hyperglycaemia and the danger signals released by ischaemia converge on the same platform. In myocardial infarction, the inflammasome is activated at reperfusion and governs, through the interleukins, adverse ventricular remodelling, cytokine-driven systolic dysfunction and the progression toward heart failure. This biology underlies the anti-interleukin revolution developed further on. »<span class="rf">Manifesto, §3.4</span></div>
     <div class="ex" style="bottom:5%;left:3.5%;max-width:720px">« The resolution of inflammation, long overlooked, is not a passive exhaustion of pro-inflammatory signals but an active, programmed process, governed by specialised pro-resolving lipid mediators: lipoxins derived from arachidonic acid, resolvins arising from the omega-3 fatty acids, protectins and maresins. These mediators curb the recruitment of neutrophils, promote the clearance of apoptotic cells and reprogram macrophages toward a reparative phenotype. The failure of this active resolution, more than an excess of initial inflammation, underlies the chronicity of immune-mediated heart disease. »<span class="rf">Manifesto, §4.4</span></div>
+    <div class="slg">Paris, at the heart of cardio-immunology.<br>A French school of cardio-immunology.<br>Cardio-immunology, from Paris to the world.</div>
   </div>
   <div class="qf qfm" style="top:37%;left:2%">« The stability of the internal environment is the condition for a free and independent life. »<cite>Claude Bernard, 1878</cite></div>
   <div class="qf" style="top:33%;right:6%;text-align:right">« In the fields of observation, chance favours only the prepared mind. »<cite>Louis Pasteur, Lille, 1854</cite></div>
@@ -258,26 +304,26 @@
     <h2>Three volumes, one field</h2>
     <div class="p3rule"></div>
     <div class="shelf" id="shelf">
-      <div class="vol v1" onclick="openReader()">
+      <div class="vol v1" onclick="openTraite()">
         <div class="vcover"><div class="frame"></div><div class="vin">
           <div class="vrom">I</div>
           <div class="vmid"><div class="vem"><svg viewBox="0 0 24 24" fill="none" stroke="#CBA85A" stroke-width="1.3"><path d="M4 4h7v16H4z"/><path d="M13 4h7v16h-7z"/><path d="M11 4v16"/></svg></div><div class="vt">The Manifesto</div></div>
           <div class="vfoot caps">The Treatise</div>
         </div></div><div class="vcap">Reading</div>
       </div>
-      <div class="vol v2" onclick="openExpose('review')">
+      <div class="vol v2" onclick="soon('The Review')">
         <div class="vcover"><div class="frame"></div><div class="vin">
           <div class="vrom">II</div>
           <div class="vmid"><div class="vem"><svg viewBox="0 0 24 24" fill="none" stroke="#B4903F" stroke-width="1.3"><circle cx="7" cy="8" r="2.4"/><circle cx="17" cy="7" r="2.4"/><circle cx="12" cy="16" r="2.4"/><path d="M9 9l6-1M8.5 10l3 4M15 9l-2.5 5"/></svg></div><div class="vt">The Review</div></div>
           <div class="vfoot caps">Online</div>
-        </div></div><div class="vcap">Enriched</div>
+        </div></div><div class="vcap">Coming soon</div>
       </div>
-      <div class="vol v3" onclick="openExpose('biblio')">
+      <div class="vol v3" onclick="soon('The Book of the Method')">
         <div class="vcover"><div class="frame"></div><div class="vin">
           <div class="vrom">III</div>
-          <div class="vmid"><div class="vem"><svg viewBox="0 0 24 24" fill="none" stroke="#CBA85A" stroke-width="1.3"><path d="M5 4h11a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2z"/><path d="M9 8h6M9 12h6"/></svg></div><div class="vt">The Bibliography</div></div>
-          <div class="vfoot caps">Annotated</div>
-        </div></div><div class="vcap">Annotated</div>
+          <div class="vmid"><div class="vem"><svg viewBox="0 0 24 24" fill="none" stroke="#CBA85A" stroke-width="1.3"><path d="M5 4h11a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2z"/><path d="M9 8h6M9 12h6"/></svg></div><div class="vt">The Book of the Method</div></div>
+          <div class="vfoot caps">The Method</div>
+        </div></div><div class="vcap">Coming soon</div>
       </div>
     </div>
   </div>
@@ -300,7 +346,64 @@
   </div>
 </div>
 
-<div class="mock">Mock-up</div>
+
+<div id="traite" lang="fr">
+  <div class="bar"><span class="bwm" onclick="closeTraite()"><span class="mm">C</span><b>Cardio Immunology Review</b></span><span class="bmode">Volume I &middot; Le Trait&eacute;</span><span class="bclose" onclick="closeTraite()">The Collection &#10005;</span></div>
+  <div class="xbody">
+    <div class="xhero">
+      <div class="xk">Volume I &middot; The Treatise</div>
+      <h1>Le Manifeste de Cardio-immunologie</h1>
+      <div class="xrule"></div>
+    </div>
+    <div class="xwrap">
+      <div class="t-sub">Maladies auto-immunes, auto-inflammatoires et rares &agrave; retentissement cardiovasculaire</div>
+
+      <div class="t-fiche"><dl>
+        <dt>Auteur</dt><dd><b>Dr Brahim S. Abdelouaeb</b> &mdash; <i>Author-Architect</i></dd>
+        <dt>Volume</dt><dd>795 pages &middot; 21 chapitres en 5 parties &middot; premi&egrave;re &eacute;dition MMXXVI</dd>
+        <dt>DOI</dt><dd><a href="https://doi.org/10.5281/zenodo.21724764">10.5281/zenodo.21724764</a></dd>
+        <dt>ORCID</dt><dd><a href="https://orcid.org/0009-0002-7690-9993">0009-0002-7690-9993</a></dd>
+        <dt>Licence</dt><dd><a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a></dd>
+      </dl></div>
+
+      <!-- ═══ FEN&Ecirc;TRE DU PDF ═══
+           O&Ugrave; D&Eacute;POSER LE FICHIER : &agrave; la RACINE de ce site, &agrave; c&ocirc;t&eacute; de index.html,
+           sous le nom exact  MONUMENT-Cardio-Immuno.pdf
+           Source : Bureau / MONUMENT-Cardio-Immuno_v15_2026-08-03.pdf  (24 Mo).
+           Le lien ci-dessous est RELATIF : il fonctionne d&egrave;s que le fichier est en place,
+           en local comme sur GitHub Pages. &Agrave; chaque nouvelle version du Trait&eacute;,
+           remplacer ce seul fichier, sans toucher au site. -->
+      <div class="t-win">
+        <h4>Lire et t&eacute;l&eacute;charger</h4>
+        <p>Le Trait&eacute; int&eacute;gral, en lecture dans le navigateur ou en PDF. D&eacute;p&ocirc;t p&eacute;renne sur Zenodo.</p>
+        <div class="t-act">
+          <a href="livre/index.html">Lire le Trait&eacute; en ligne</a>
+          <a href="MONUMENT-Cardio-Immuno.pdf" download>T&eacute;l&eacute;charger le PDF</a>
+          <a class="sec" href="https://doi.org/10.5281/zenodo.21724764">Zenodo &middot; DOI</a>
+        </div>
+      </div>
+
+      <div class="t-pres"><p>Le cœur a longtemps été tenu pour une victime passive de l'immunité : un organe que la maladie systémique vient frapper de l'extérieur.</p><p>Il héberge pourtant, à l'état basal, sa propre immunité. Des macrophages d'origine embryonnaire y participent à l'homéostasie et jusqu'à la conduction électrique. Cette immunité répare la blessure, et se retourne quand elle ne se résout pas.</p><p>De cette constatation naît une manière de voir, que ce Traité tente de démontrer chapitre après chapitre : l'immunologie est, pour la médecine cardiovasculaire du siècle qui vient, ce que l'anatomie fut pour la chirurgie. Non une discipline de plus, mais la carte sous toutes les autres.</p><p>Vingt et un chapitres en cinq parties conduisent des mécanismes fondamentaux aux maladies où l'immunité est la cause, puis à celles où elle est le terrain, jusqu'à la médecine de précision et à la transplantation. Une grille de lecture générale, six variables et sept invariants, propose d'expliquer pourquoi une même maladie produit plusieurs atteintes cardiaques, pourquoi des maladies différentes convergent vers un même tableau, et pourquoi l'activité immunitaire, le dommage et la gravité ne vont pas ensemble.</p><p>L'ouvrage énonce aussi ce qu'il ne sait pas. Il donne les essais qui l'ont contredit, nomme l'expérience qui pourrait réfuter sa thèse principale, et referme sur ses propres limites.</p><p>Chaque seuil y est repris mot pour mot de sa source. Chaque mécanisme y porte son espèce et son niveau de preuve. Ce qui ne pouvait pas être sourcé n'a pas été écrit.</p><p class="sig">Un traité pour le cardiologue qui veut comprendre, l'interniste qui veut relier, et le lecteur qui découvre une discipline en train de se constituer.</p></div>
+
+      <div class="t-pres"><h4 style="font-family:var(--display);font-weight:600;font-size:24px;color:var(--navy);margin:34px 0 4px">Les vingt et un chapitres</h4></div>
+      <div class="part-h"><span class="pr">PARTIE I</span><span class="pt">Principes et mécanismes</span><span class="pl"></span></div><ul class="t-list"><li><span class="cn">1</span><a href="livre/21-1-bases-immunologiques-fondamentales.html">Bases immunologiques fondamentales</a></li></ul><ul class="t-list"><li><span class="cn">2</span><a href="livre/22-2-cellules-effectrices-de-l-immunit-cardiaqu.html">Cellules effectrices de l’immunité cardiaque</a></li></ul><ul class="t-list"><li><span class="cn">3</span><a href="livre/23-3-biologie-vasculaire-et-ath-rogen-se-inflam.html">Biologie vasculaire et athérogenèse inflammatoire</a></li></ul><ul class="t-list"><li><span class="cn">4</span><a href="livre/24-4-remodelage-cardiaque-post-infarctus-m-cani.html">Remodelage cardiaque post-infarctus : mécanismes immunitaires de la réparation</a></li></ul><div class="part-h"><span class="pr">PARTIE II</span><span class="pt">Maladies auto-immunes, auto-inflammatoires et infiltratives</span><span class="pl"></span></div><ul class="t-list"><li><span class="cn">5</span><a href="livre/26-5-p-ricardites-immuno-m-di-es.html">Péricardites immuno-médiées</a></li></ul><ul class="t-list"><li><span class="cn">6</span><a href="livre/27-6-myocardites-physiopathologie-diagnostic-et.html">Myocardites : physiopathologie, diagnostic et prise en charge</a></li></ul><ul class="t-list"><li><span class="cn">7</span><a href="livre/28-7-cardiopathies-inflammatoires-et-infiltrati.html">Cardiopathies inflammatoires et infiltratives : sarcoïdose et amyloses (AL, ATTR, AA)</a></li></ul><ul class="t-list"><li><span class="cn">8</span><a href="livre/29-8-atteintes-cardiovasculaires-des-maladies-a.html">Atteintes cardiovasculaires des maladies auto-immunes systémiques</a></li></ul><ul class="t-list"><li><span class="cn">9</span><a href="livre/30-9-atteintes-cardiovasculaires-des-vascularit.html">Atteintes cardiovasculaires des vascularites systémiques</a></li></ul><ul class="t-list"><li><span class="cn">10</span><a href="livre/31-10-syndromes-auto-inflammatoires.html">Syndromes auto-inflammatoires</a></li></ul><ul class="t-list"><li><span class="cn">11</span><a href="livre/32-11-hypertension-pulmonaire-des-maladies-auto.html">Hypertension pulmonaire des maladies auto-immunes</a></li></ul><ul class="t-list"><li><span class="cn">12</span><a href="livre/33-12-maladies-syst-miques-rares-expression-car.html">Maladies systémiques rares à expression cardiovasculaire</a></li></ul><div class="part-h"><span class="pr">PARTIE III</span><span class="pt">Insuffisance cardiaque : le diptyque et sa thérapeutique</span><span class="pl"></span></div><ul class="t-list"><li><span class="cn">13</span><a href="livre/35-13-de-la-d-faillance-l-tiologie.html">De la défaillance à l’étiologie</a></li></ul><ul class="t-list"><li><span class="cn">14</span><a href="livre/36-14-de-l-tiologie-l-ordonnance.html">De l’étiologie à l’ordonnance</a></li></ul><ul class="t-list"><li><span class="cn">15</span><a href="livre/37-15-pharmacologie-et-bioth-rapies-immunomodul.html">Pharmacologie et biothérapies immunomodulatrices</a></li></ul><div class="part-h"><span class="pr">PARTIE IV</span><span class="pt">Contextes particuliers</span><span class="pl"></span></div><ul class="t-list"><li><span class="cn">16</span><a href="livre/43-16-axe-microbiote-intestinal-immunit-c-ur.html">Axe microbiote intestinal-immunité-cœur</a></li></ul><ul class="t-list"><li><span class="cn">17</span><a href="livre/44-17-cardio-oncologie-immunologique-car-t-inhi.html">Cardio-oncologie immunologique : CAR-T, inhibiteurs de point de contrôle immunitaire (ICI) et thérapies ciblées</a></li></ul><ul class="t-list"><li><span class="cn">18</span><a href="livre/45-18-cardio-infectiologie-immunologique.html">Cardio-infectiologie immunologique</a></li></ul><div class="part-h"><span class="pr">PARTIE V</span><span class="pt">Médecine de précision</span><span class="pl"></span></div><ul class="t-list"><li><span class="cn">19</span><a href="livre/47-19-g-nomique-et-endotypage-en-cardio-immunol.html">Génomique et endotypage en cardio-immunologie</a></li></ul><ul class="t-list"><li><span class="cn">20</span><a href="livre/48-20-imagerie-et-biomarqueurs-en-cardio-immuno.html">Imagerie et biomarqueurs en cardio-immunologie</a></li></ul><ul class="t-list"><li><span class="cn">21</span><a href="livre/49-21-transplantation-cardiaque-et-immunologie.html">Transplantation cardiaque et immunologie du rejet</a></li></ul>
+
+      <div class="t-proto"><b>PROTOTYPE</b></div>
+    </div>
+  </div>
+</div>
+
+<div id="soon" onclick="closeSoon(event)">
+  <div class="card">
+    <div class="k" id="soonKick"></div>
+    <h3 id="soonTitle"></h3>
+    <div class="r"></div>
+    <div class="d">Coming soon le 22 octobre 2026</div>
+    <span class="x" onclick="closeSoon()">Fermer</span>
+  </div>
+</div>
+
+<div class="mock"><b>PROTOTYPE</b></div>
 
 <script>
 function show(id){document.querySelectorAll('.stage').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');if(id==='p2')buildAtlas();if(id==='p3'){const sh=document.getElementById('shelf');sh.classList.remove('go');void sh.offsetWidth;sh.classList.add('go');}}
@@ -321,7 +424,13 @@ function buildAtlas(){
     '<radialGradient id="coeur" cx="46%" cy="42%" r="62%"><stop offset="0%" stop-color="#FBEFC6"/><stop offset="45%" stop-color="#DBB863"/><stop offset="100%" stop-color="#A9842F"/></radialGradient>'+
     '<radialGradient id="halo" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(203,168,90,.5)"/><stop offset="100%" stop-color="rgba(203,168,90,0)"/></radialGradient>'+
     '<linearGradient id="spoke" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="rgba(203,168,90,.55)"/><stop offset="100%" stop-color="rgba(203,168,90,.12)"/></linearGradient>'+
-    '<filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>';
+    '<filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'+
+    /* ── LES RUBIS — pierres serties, à la manière d'un mouvement horloger ── */
+    '<radialGradient id="ruby" cx="36%" cy="30%" r="72%"><stop offset="0%" stop-color="#FF8FA2"/><stop offset="22%" stop-color="#E23E58"/><stop offset="62%" stop-color="#B01733"/><stop offset="100%" stop-color="#6E0A1C"/></radialGradient>'+
+    '<radialGradient id="rubyGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(214,58,84,.30)"/><stop offset="60%" stop-color="rgba(190,40,66,.10)"/><stop offset="100%" stop-color="rgba(190,40,66,0)"/></radialGradient>'+
+    '<linearGradient id="chaton" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0%" stop-color="#F0DCA0"/><stop offset="42%" stop-color="#CBA85A"/><stop offset="100%" stop-color="#8E6E2C"/></linearGradient>'+
+    '<radialGradient id="huile" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(255,236,196,.55)"/><stop offset="100%" stop-color="rgba(255,236,196,0)"/></radialGradient>'+
+    '<filter id="gemGlow" x="-90%" y="-90%" width="280%" height="280%"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>';
   S.appendChild(defs);
   const rings={
     A:{r:176,phase:-90,color:'#CBA85A',rn:7,items:['Innate immunity','Inflammasome','Interleukin axis','Complement','Adaptive immunity','Resolution','Immunometabolism']},
@@ -340,7 +449,7 @@ function buildAtlas(){
       const ndg=document.createElementNS(NS,'circle');ndg.setAttribute('cx',x);ndg.setAttribute('cy',y);ndg.setAttribute('r',ring.rn+4);ndg.setAttribute('fill','rgba(203,168,90,.10)');g.appendChild(ndg);
       const nd=document.createElementNS(NS,'circle');nd.setAttribute('cx',x);nd.setAttribute('cy',y);nd.setAttribute('r',ring.rn);nd.setAttribute('fill','#0C1B2E');nd.setAttribute('stroke',ring.color);nd.setAttribute('stroke-width','1.4');nd.setAttribute('filter','url(#glow)');g.appendChild(nd);
       const co=Math.cos(ang);const near=Math.abs(co)<0.22;const off=ring.rn+(near?20:15);
-      const t=document.createElementNS(NS,'text');t.setAttribute('x',x+co*off);t.setAttribute('y',y+Math.sin(ang)*off+5);t.setAttribute('font-family',"'Cormorant Garamond',serif");t.setAttribute('font-weight','500');t.setAttribute('font-size','16');t.setAttribute('letter-spacing','1.3');t.setAttribute('fill','#F3ECD9');t.setAttribute('text-anchor',co>0.22?'start':(co<-0.22?'end':'middle'));t.setAttribute('style','paint-order:stroke;stroke:#0A1626;stroke-width:4px;stroke-linejoin:round');t.textContent=label.toUpperCase();g.appendChild(t);
+      const t=document.createElementNS(NS,'text');t.setAttribute('x',x+co*off);t.setAttribute('y',y+Math.sin(ang)*off+5);t.setAttribute('font-family',"'Cormorant Garamond',serif");t.setAttribute('font-weight','500');t.setAttribute('font-size','16');t.setAttribute('letter-spacing','0.35');t.setAttribute('fill','#F3ECD9');t.setAttribute('text-anchor',co>0.22?'start':(co<-0.22?'end':'middle'));t.setAttribute('style','paint-order:stroke;stroke:#0A1626;stroke-width:4px;stroke-linejoin:round');t.textContent=label;g.appendChild(t);
       S.appendChild(g);delay++;
     });
   }
@@ -354,8 +463,8 @@ function buildAtlas(){
   const halo=document.createElementNS(NS,'circle');halo.setAttribute('cx',cx);halo.setAttribute('cy',cy);halo.setAttribute('r',118);halo.setAttribute('fill','url(#halo)');halo.style.transformOrigin=cx+'px '+cy+'px';halo.style.animation='beat 4.5s ease-in-out infinite';S.appendChild(halo);
   const core=document.createElementNS(NS,'circle');core.setAttribute('cx',cx);core.setAttribute('cy',cy);core.setAttribute('r',64);core.setAttribute('fill','url(#coeur)');S.appendChild(core);
   const rim=document.createElementNS(NS,'circle');rim.setAttribute('cx',cx);rim.setAttribute('cy',cy);rim.setAttribute('r',64);rim.setAttribute('fill','none');rim.setAttribute('stroke','rgba(255,247,225,.5)');rim.setAttribute('stroke-width','1');S.appendChild(rim);
-  const t1=document.createElementNS(NS,'text');t1.setAttribute('x',cx);t1.setAttribute('y',cy-3);t1.setAttribute('text-anchor','middle');t1.setAttribute('font-family',"'Cormorant Garamond',serif");t1.setAttribute('font-weight','600');t1.setAttribute('font-size','18');t1.setAttribute('letter-spacing','1.2');t1.setAttribute('fill','#0f2138');t1.textContent='THE HEART,';S.appendChild(t1);
-  const t2=document.createElementNS(NS,'text');t2.setAttribute('x',cx);t2.setAttribute('y',cy+16);t2.setAttribute('text-anchor','middle');t2.setAttribute('font-family',"'Cormorant Garamond',serif");t2.setAttribute('font-size','13');t2.setAttribute('letter-spacing','1.2');t2.setAttribute('fill','#0f2138');t2.textContent='AN IMMUNE ORGAN';S.appendChild(t2);
+  const t1=document.createElementNS(NS,'text');t1.setAttribute('x',cx);t1.setAttribute('y',cy-3);t1.setAttribute('text-anchor','middle');t1.setAttribute('font-family',"'Cormorant Garamond',serif");t1.setAttribute('font-weight','600');t1.setAttribute('font-size','18');t1.setAttribute('letter-spacing','0.5');t1.setAttribute('fill','#0f2138');t1.textContent='The heart,';S.appendChild(t1);
+  const t2=document.createElementNS(NS,'text');t2.setAttribute('x',cx);t2.setAttribute('y',cy+16);t2.setAttribute('text-anchor','middle');t2.setAttribute('font-family',"'Cormorant Garamond',serif");t2.setAttribute('font-size','13');t2.setAttribute('letter-spacing','0.5');t2.setAttribute('fill','#0f2138');t2.textContent='an immune organ';S.appendChild(t2);
   // distant constellation : the five future interfaces, faint on the horizon
   const far=[
     {x:205,y:118,l:'Ophthalmo-immunology',a:'start'},
@@ -364,13 +473,38 @@ function buildAtlas(){
     {x:212,y:884,l:'Pneumo-immunology',a:'start'},
     {x:1000,y:886,l:'Rheumato-immunology',a:'end'}
   ];
+  // ── LES CINQ RUBIS — pierres serties dans la platine, à la manière d'un mouvement ──
+  // Un rubis de mouvement n'est pas une étoile : c'est une pierre RONDE, chassée
+  // dans un chaton d'or, avec sa goutte d'huile qui capte la lumière. Elle ne
+  // scintille pas — elle LUIT, lentement, quand la lumière passe dessus.
   far.forEach((f,i)=>{
     const g=document.createElementNS(NS,'g');g.setAttribute('class','far');g.style.animationDelay=(1.9+i*0.25)+'s';
-    const halo=document.createElementNS(NS,'circle');halo.setAttribute('cx',f.x);halo.setAttribute('cy',f.y);halo.setAttribute('r',15);halo.setAttribute('fill','rgba(122,206,255,.22)');g.appendChild(halo);
-    const st=document.createElementNS(NS,'path');const R=9,r2=2.4;
-    const d='M '+f.x+' '+(f.y-R)+' L '+(f.x+r2)+' '+(f.y-r2)+' L '+(f.x+R)+' '+f.y+' L '+(f.x+r2)+' '+(f.y+r2)+' L '+f.x+' '+(f.y+R)+' L '+(f.x-r2)+' '+(f.y+r2)+' L '+(f.x-R)+' '+f.y+' L '+(f.x-r2)+' '+(f.y-r2)+' Z';
-    st.setAttribute('d',d);st.setAttribute('fill','#C7ECFF');st.setAttribute('filter','url(#glow)');st.setAttribute('class','st');st.style.animationDelay=(i*0.7)+'s';g.appendChild(st);
-    const t=document.createElementNS(NS,'text');t.setAttribute('x',f.a==='start'?f.x+14:f.x-14);t.setAttribute('y',f.y+4);t.setAttribute('text-anchor',f.a);t.setAttribute('font-family',"'Cormorant Garamond',serif");t.setAttribute('font-style','italic');t.setAttribute('font-weight','500');t.setAttribute('font-size','13.5');t.setAttribute('letter-spacing','1');t.setAttribute('fill','#AEDCF7');t.setAttribute('style','paint-order:stroke;stroke:#0A1626;stroke-width:3.2px;stroke-linejoin:round');t.textContent=f.l.toUpperCase();g.appendChild(t);
+
+    // le halo rouge sourd, comme la lueur d'une pierre sous la loupe
+    const glow=document.createElementNS(NS,'circle');glow.setAttribute('cx',f.x);glow.setAttribute('cy',f.y);glow.setAttribute('r',17);glow.setAttribute('fill','url(#rubyGlow)');g.appendChild(glow);
+
+    // le CHATON — l'anneau d'or qui reçoit la pierre
+    const chaton=document.createElementNS(NS,'circle');chaton.setAttribute('cx',f.x);chaton.setAttribute('cy',f.y);chaton.setAttribute('r',8.4);
+    chaton.setAttribute('fill','none');chaton.setAttribute('stroke','url(#chaton)');chaton.setAttribute('stroke-width','2.1');g.appendChild(chaton);
+    // le liseré intérieur (la portée du chaton)
+    const lis=document.createElementNS(NS,'circle');lis.setAttribute('cx',f.x);lis.setAttribute('cy',f.y);lis.setAttribute('r',6.6);
+    lis.setAttribute('fill','none');lis.setAttribute('stroke','rgba(10,22,38,.55)');lis.setAttribute('stroke-width','.7');g.appendChild(lis);
+
+    // LA PIERRE — rubis synthétique, taille bombée
+    const gem=document.createElementNS(NS,'circle');gem.setAttribute('cx',f.x);gem.setAttribute('cy',f.y);gem.setAttribute('r',6.1);
+    gem.setAttribute('fill','url(#ruby)');gem.setAttribute('filter','url(#gemGlow)');gem.setAttribute('class','gem');gem.style.animationDelay=(i*1.15)+'s';g.appendChild(gem);
+
+    // le TROU DE PIVOT — le percage central, noir, où passerait l'axe
+    const pivot=document.createElementNS(NS,'circle');pivot.setAttribute('cx',f.x);pivot.setAttribute('cy',f.y);pivot.setAttribute('r',1.35);
+    pivot.setAttribute('fill','rgba(46,4,12,.85)');g.appendChild(pivot);
+
+    // LA GOUTTE D'HUILE — le reflet spéculaire, décalé en haut à gauche
+    const huile=document.createElementNS(NS,'ellipse');huile.setAttribute('cx',f.x-2.0);huile.setAttribute('cy',f.y-2.3);
+    huile.setAttribute('rx','2.3');huile.setAttribute('ry','1.5');huile.setAttribute('transform','rotate(-28 '+(f.x-2.0)+' '+(f.y-2.3)+')');
+    huile.setAttribute('fill','url(#huile)');g.appendChild(huile);
+
+    // le libellé — or pâle et non plus bleu glacé : la pierre est chaude
+    const t=document.createElementNS(NS,'text');t.setAttribute('x',f.a==='start'?f.x+16:f.x-16);t.setAttribute('y',f.y+4);t.setAttribute('text-anchor',f.a);t.setAttribute('font-family',"'Cormorant Garamond',serif");t.setAttribute('font-style','italic');t.setAttribute('font-weight','500');t.setAttribute('font-size','13.5');t.setAttribute('letter-spacing','0.3');t.setAttribute('fill','#E4C98E');t.setAttribute('style','paint-order:stroke;stroke:#0A1626;stroke-width:3.2px;stroke-linejoin:round');t.textContent=f.l;g.appendChild(t);
     S.appendChild(g);
   });
 }
@@ -469,6 +603,21 @@ function revealExpose(){
     v.addEventListener('pointerleave',()=>{cov.style.transform='';});
   });
 })();
+
+/* ——— couche additive du 3 août 2026 ——— */
+function openTraite(){const t=document.getElementById('traite');t.classList.add('open');t.querySelector('.xbody').scrollTo(0,0);}
+function closeTraite(){document.getElementById('traite').classList.remove('open');}
+function soon(nom){
+  document.getElementById('soonKick').textContent=(nom==='The Review'?'Volume II · Online':'Volume III · The Method');
+  document.getElementById('soonTitle').textContent=nom;
+  document.getElementById('soon').classList.add('open');
+}
+function closeSoon(e){if(e&&e.target&&e.target.id!=='soon'&&!e.target.classList.contains('x'))return;
+  document.getElementById('soon').classList.remove('open');}
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape')return;
+  closeSoon(); closeTraite();
+});
 </script>
 </body>
 </html>
